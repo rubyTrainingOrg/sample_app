@@ -26,4 +26,5 @@ end
 
 group :production do
   gem 'rails_12factor'
+  gem 'test-unit', '~> 3.0'
 end
