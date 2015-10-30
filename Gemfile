@@ -14,7 +14,6 @@ end
 group :test do
   gem 'rspec', '2.8.0'
   gem 'minitest'
-  gem 'test-unit'
   gem 'spork', '0.9.0.rc5'
   gem 'factory_girl_rails', '1.0'
   gem 'webrat', '0.7.1'
@@ -22,9 +21,9 @@ end
 
 group :production, :development, :test do
   gem 'pg'
+  gem 'test-unit'
 end
 
 group :production do
   gem 'rails_12factor'
-  gem 'test-unit', '~> 3.0'
 end
