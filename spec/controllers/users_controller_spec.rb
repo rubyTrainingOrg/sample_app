@@ -4,9 +4,11 @@ describe UsersController do
   render_views
   
   describe "GET 'new'" do
+    
     it "should be successful" do
-      get :new
-      response.should be_success
+      
+          get :new
+          response.should be_success
     end
     
     it "should have the right title" do
@@ -14,6 +16,27 @@ describe UsersController do
       response.should have_selector("title", 
                                     :content => " | Inscription")
     end
+    
+    it "should contain a field name" do
+      get :new
+      response.should have_selector("input[name='user[nom]'][type='text']")
+    end
+    
+    it "should contain a field email" do
+      get :new
+      response.should have_selector("input[name='user[email]'][type='text']")
+    end
+    
+    it "should contain a field password" do
+      get :new
+      response.should have_selector("input[name='user[password]'][type='password']")
+    end
+    
+    it "should contain a field password confirmation" do
+      get :new
+      response.should have_selector("input[name='user[password_confirmation]'][type='password']")
+    end
+    
   end
   
   describe "GET 'show'" do
@@ -94,6 +117,11 @@ describe UsersController do
       it "devrait afficher un message flash de bienvenue" do
         post :create, :user => @attr
         flash[:success].should =~ /Bienvenue dans l'Application Exemple/i
+      end
+      
+      it "devrait identifier l'utilisateur" do
+        post :create, :user => @attr
+        controller.should be_signed_in
       end
     end
   end  
